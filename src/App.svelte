@@ -1,10 +1,23 @@
 <script lang="ts">
 	export let name: string;
+	let period = 20
+
+	//@ts-ignore
+	import fistral from './data/fistral_north_1_forecast.json';
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<div class="small-container">
+		<h1>Swell</h1>
+		<p>Select a location to see visualise the conditions</p>
+		<select>
+			<option>Fistral - Cornwall</option>
+			<option>Pipeline - Hawaii</option>
+			<option>Snapper Rocks - Queensland</option>
+			<option>Trestles - California</option>
+		</select>
+		<p>{fistral[0].swell.components.combined.period}</p>
+	</div>
 
 	<div class="ocean">
 		<div class="wave"></div>
@@ -16,15 +29,8 @@
 	main {
 		text-align: center;
 		padding: 0;
-		max-width: 240px;
+		max-width: 580px;
 		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
 	}
 
 	@media (min-width: 640px) {
@@ -48,7 +54,7 @@
 		top: -198px;
 		width: 6400px;
 		height: 198px;
-		animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+		animation: wave var(--theme-period)s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
 		transform: translate3d(0, 0, 0);
 	}
 
